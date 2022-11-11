@@ -1,25 +1,40 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import RatingStar from '../../components/RatingStar/RatingStar';
 import ServiceReview from './ServiceReview';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthProvider';
+import toast from 'react-hot-toast';
 
 
 const ServiceDetails = () => {
-    const data = useLoaderData();
-    const { title, description, img, rating, _id } = data;
+    const { user } = useContext(AuthContext);
+    const service = useLoaderData();
+    const { title, description, img, rating, _id } = service;
     const [reviews, setReviews] = useState([]);
+    const navigate = useNavigate();
 
     //get all reviews by service id
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews/${_id}`)
+        fetch(`http://localhost:5000/reviews/service/${_id}`)
             .then(res => res.json())
             .then(data => {
+                // console.log(data);
                 setReviews(data);
-            });
+            })
+            .catch(err => console.error(err))
     }, [_id]);
+
+    // Add A Review
+    const handleAddReviewButton = () => {
+        if (!user) {
+            toast.error('Please login to Post a Review');
+        }
+        navigate(`/service/addreview/${_id}`);
+    }
 
     return (
         <div>
@@ -47,10 +62,7 @@ const ServiceDetails = () => {
 
             <div className='flex justify-between items-center mx-10'>
                 <h3 className="text-center lg:my-5 text-2xl md:text-3xl lg:text-4xl  lg:leading-[60px] font-bold ">Client Reviews</h3>
-                {/* The button to open modal */}
-                <Link to={`/service/addreview/${_id}`}>
-                    <button className="btn btn-outline capitalize">Add A Review</button>
-                </Link>
+                <button onClick={handleAddReviewButton} className="btn btn-outline capitalize">Add A Review</button>
             </div>
             {
                 reviews.map(rev => <ServiceReview

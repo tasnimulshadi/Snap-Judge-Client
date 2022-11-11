@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
@@ -16,7 +16,8 @@ const AddReview = () => {
         const message = event.target.message.value;
         //time
         const review = {
-            service: service._id,
+            serviceId: service._id,
+            userId: user.uid,
             userName: user.displayName,
             userImg: user.photoURL,
             message,

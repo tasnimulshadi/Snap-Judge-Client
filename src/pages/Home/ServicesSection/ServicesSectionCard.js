@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaStar } from 'react-icons/fa';
 import ReactPhotoView from '../../../components/react-photo-view/ReactPhotoView';
 import RatingStar from '../../../components/RatingStar/RatingStar';
 
