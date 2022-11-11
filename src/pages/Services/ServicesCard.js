@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
-import ReactPhotoView from '../../../components/react-photo-view/ReactPhotoView';
+import ReactPhotoView from '../../components/react-photo-view/ReactPhotoView';
 
-const ServicesSectionCard = ({ service }) => {
+const ServicesCard = ({ service }) => {
     const { _id, title, rating, img, description } = service;
 
     return (
@@ -26,4 +26,4 @@ const ServicesSectionCard = ({ service }) => {
     );
 };
 
-export default ServicesSectionCard;
+export default ServicesCard;

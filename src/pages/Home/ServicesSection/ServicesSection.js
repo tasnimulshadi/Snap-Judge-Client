@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import ServicesSectionCard from './ServicesSectionCard';
 
 const ServicesSection = () => {
@@ -27,7 +28,9 @@ const ServicesSection = () => {
                 }
 
             </div>
-            <button className='btn bg-transparent  hover:text-white text-black block mx-auto mt-12 rounded-md  capitalize'>More Services</button>
+            <Link to='/services'>
+                <button className='btn bg-transparent  hover:text-white text-black block mx-auto mt-12 rounded-md  capitalize'>See All Services</button>
+            </Link>
         </div>
     );
 };
