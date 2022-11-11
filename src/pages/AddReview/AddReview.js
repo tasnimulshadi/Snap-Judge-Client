@@ -15,7 +15,7 @@ const AddReview = () => {
         event.preventDefault();
         const message = event.target.message.value;
         //time
-        const review = {
+        const reviewInfo = {
             serviceId: service._id,
             userId: user.uid,
             userName: user.displayName,
@@ -30,7 +30,7 @@ const AddReview = () => {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(review)
+            body: JSON.stringify(reviewInfo)
         })
             .then(res => res.json())
             .then(data => {
