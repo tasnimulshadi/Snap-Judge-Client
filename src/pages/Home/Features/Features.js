@@ -1,4 +1,5 @@
 import React from 'react';
+import featureSectionImg from '../../../assets/featureSectionImg.jpg';
 
 const Features = () => {
     return (
@@ -47,7 +48,7 @@ const Features = () => {
                             </div>
                         </div>
                         <div className="mt-10 lg:mt-0 lg:col-start-1 lg:row-start-1">
-                            <img src="https://source.unsplash.com/random/361x481" alt="" className="mx-auto rounded-lg shadow-lg " />
+                            <img src={featureSectionImg} alt="" className="mx-auto rounded-lg shadow-lg w-96" />
                         </div>
                     </div>
                 </div>

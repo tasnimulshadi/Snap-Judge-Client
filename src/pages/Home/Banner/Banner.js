@@ -28,7 +28,9 @@ const Banner = () => {
                                 </h1>
                                 <p className='text-white md:text-lg max-w-md my-7'>Need new content for social media? Or level up your marketing game to capture your ideal client's attention?</p>
                                 <div className='text-white flex flex-row flex-wrap gap-4'>
-                                    <button className='btn bg-transparent border-white rounded-md capitalize'>Explore Services</button>
+                                    <a href='#homeServiceSection'>
+                                        <button className='btn bg-transparent border-white rounded-md capitalize'>Explore Services</button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
