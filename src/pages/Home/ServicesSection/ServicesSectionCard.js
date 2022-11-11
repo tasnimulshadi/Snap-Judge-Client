@@ -8,7 +8,7 @@ const ServicesSectionCard = ({ service }) => {
     return (
         <div className="card border-2 border-gray-100 shadow-lg rounded-lg">
             <figure className="p-5">
-                <img src='' alt='' className="rounded-lg h-48 sm:h-64 md:h-48 w-full object-cover" />
+                <img src={img} alt='' className="rounded-lg h-48 sm:h-64 md:h-48 w-full object-cover" />
             </figure>
             <div className="card-body p-5 pt-0">
                 <h2 className="font-bold text-2xl">{title}</h2>
