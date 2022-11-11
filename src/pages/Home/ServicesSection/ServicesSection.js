@@ -12,7 +12,7 @@ const ServicesSection = () => {
 
 
     return (
-        <div className=' pb-10'>
+        <div className='lg:pt-10 pb-10'>
             <div className="text-center">
                 <h3 className="my-3 lg:my-5 text-3xl md:text-4xl lg:text-5xl  lg:leading-[60px] font-bold">Our Services</h3>
                 <p className="text-lg text-gray-500 capitalize">

@@ -1,29 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
+import { AuthContext } from '../../context/AuthProvider';
 
 const Header = () => {
-    // const { user, signOutUser } = useContext(AuthContext);
-    const user = true;
+    const { user, signOutUser } = useContext(AuthContext);
 
     const handleLogout = () => {
-        // signOutUser()
-        //     .then(() => {
-        //         alert('Sign-out successful.');
-        //     }).catch((error) => {
-        //         console.error(error);
-        //     });
+        signOutUser()
+            .then(() => {
+                alert('Sign-out successful.');
+            }).catch((error) => {
+                console.error(error);
+            });
     }
 
     //menu li variable
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
         {
-            user
-                ?
-                <li className='cursor-pointer' onClick={handleLogout}><Link>Logout</Link></li>
-                :
-                <li><Link to='/login'>Login</Link></li>
+            !user
+            &&
+            <li><Link to='/login'>Login</Link></li>
         }
         {/* <li tabIndex={0}>
             <Link className="justify-between">
