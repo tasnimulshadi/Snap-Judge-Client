@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import { AuthContext } from '../../context/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Header = () => {
     const { user, signOutUser } = useContext(AuthContext);
@@ -9,9 +10,9 @@ const Header = () => {
     const handleLogout = () => {
         signOutUser()
             .then(() => {
-                alert('Sign-out successful.');
+                toast.success('User Logged Out Successfully');
             }).catch((error) => {
-                console.error(error);
+                toast.error(error.message);
             });
     }
 
