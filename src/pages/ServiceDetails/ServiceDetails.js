@@ -2,7 +2,6 @@ import React from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import RatingStar from '../../components/RatingStar/RatingStar';
 import ServiceReview from './ServiceReview';
-import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
@@ -25,10 +24,10 @@ const ServiceDetails = () => {
                 // console.log(data);
                 setReviews(data);
             })
-            .catch(err => console.error(err))
+            .catch(err => console.error(err));
     }, [_id]);
 
-    // Add A Review
+    // Add A Review button
     const handleAddReviewButton = () => {
         if (!user) {
             toast.error('Please login to Post a Review');

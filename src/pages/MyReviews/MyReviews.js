@@ -16,6 +16,22 @@ const MyReviews = () => {
             });
     }, [user]);
 
+    //delete a review by id
+    const handleReviewDelete = (id) => {
+        //call delete api
+        fetch(`http://localhost:5000/reviews/delete/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.deletedCount > 0) {
+                    const remainingReviews = reviews.filter(rev => rev._id !== id);
+                    setReviews(remainingReviews);
+                }
+            });
+    }
+
     return (
         <div>
             <div className='flex justify-between items-center mx-10'>
@@ -25,6 +41,7 @@ const MyReviews = () => {
                 reviews.map(rev => <MyReviewsList
                     key={rev._id}
                     review={rev}
+                    handleReviewDelete={handleReviewDelete}
                 ></MyReviewsList>)
 
             }
