@@ -5,12 +5,12 @@ import { AuthContext } from '../../context/AuthProvider';
 import toast from 'react-hot-toast';
 
 const Register = () => {
-    const { createUser, googleSingIn } = useContext(AuthContext);
+    const { createUser, googleSingIn, updateUser, signOutUser } = useContext(AuthContext);
 
     //navigate
     const navigate = useNavigate();
     const location = useLocation();
-    const previousLocation = location?.state || '/';
+    const previousLocation = location.state?.from?.pathname || '/';
 
     //register
     const handleRegister = (event) => {
@@ -28,14 +28,37 @@ const Register = () => {
                 form.reset();
                 toast.success('User Created Successfully');
 
-                //navigate
-                navigate(previousLocation, { replace: true });
+                //update profile and logout
+                updateUser(name, img)
+                    .then(() => {
+                        // logout
+                        signOutUser()
+                            .then(() => {
+                                // navigate
+                                navigate('/login', { state: { from: { pathname: previousLocation } } }, { replace: true });
+
+                            }).catch((error) => {
+                                console.error('firebase errror:', error.message);
+                                toast.error(error.message);
+                            });
+
+                    }).catch((error) => {
+                        console.error('firebase errror:', error.message);
+                        toast.error(error.message);
+                    });
+
             })
             .catch(err => {
                 console.error('firebase errror:', err.message);
-                toast.error(err.message.slice(9));
+                toast.error(err.message);
             });
     }
+
+    //update profile
+    const updateProfileAndSignOut = (name, img) => {
+
+    }
+
 
     // google signin firebase
     const handleGoogleSignIn = () => {

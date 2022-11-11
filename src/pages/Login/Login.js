@@ -10,6 +10,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const previousLocation = location.state?.from?.pathname || '/';
+    console.log(previousLocation);
 
     //login
     const handleLogin = (event) => {
@@ -82,7 +83,7 @@ const Login = () => {
                                 <FcGoogle />
                             </button>
                         </div>
-                        <p className='text-sm mt-5'>Have an account? <Link to='/register' state={previousLocation} replace className='text-blue-500 font-semibold hover:underline'>Register</Link></p>
+                        <p className='text-sm mt-5'>Have an account? <Link to='/register' state={{ from: { pathname: previousLocation } }} replace className='text-blue-500 font-semibold hover:underline'>Register</Link></p>
                     </div>
                 </div>
             </div>
