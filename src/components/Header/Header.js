@@ -3,9 +3,17 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 
 const Header = () => {
+    // const { user, signOutUser } = useContext(AuthContext);
     const user = true;
 
-
+    const handleLogout = () => {
+        // signOutUser()
+        //     .then(() => {
+        //         alert('Sign-out successful.');
+        //     }).catch((error) => {
+        //         console.error(error);
+        //     });
+    }
 
     //menu li variable
     const menuItems = <>
@@ -13,7 +21,7 @@ const Header = () => {
         {
             user
                 ?
-                <li className='cursor-pointer' ><Link>Logout</Link></li>
+                <li className='cursor-pointer' onClick={handleLogout}><Link>Logout</Link></li>
                 :
                 <li><Link to='/login'>Login</Link></li>
         }
@@ -60,7 +68,7 @@ const Header = () => {
                             </div>
                         </label>
                         <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                            <li><button >Logout</button></li>
+                            <li><button onClick={handleLogout}>Logout</button></li>
                         </ul>
                     </div>
                 }
