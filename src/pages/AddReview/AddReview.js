@@ -28,7 +28,7 @@ const AddReview = () => {
         }
         // console.log(review);
 
-        // add review api call
+        // Api call : add review 
         fetch('http://localhost:5000/addreview', {
             method: 'POST',
             headers: {
@@ -42,10 +42,30 @@ const AddReview = () => {
                     toast.success('A review is added');
                     event.target.reset();
 
-                    //after review is added into database then navigate to the service
-                    navigate(`/services/${service._id}`);
+                    //patch start
+                    // Api call : update(patch) service rating
+                    // get all the reviews rating for the service
+                    // calculate average rating for the service
+                    // update service rating with new rating
+                    fetch(`http://localhost:5000/service/update/rating/${service._id}`, {
+                        method: "PATCH"
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.acknowledged) {
+                                // after review is added into database 
+                                // after service rating is updated 
+                                // then navigate to the service
+                                navigate(`/services/${service._id}`);
+                            }
+
+                        });
+                    //patch end
+
                 }
+
             });
+        //add review api end
 
     }
 

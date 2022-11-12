@@ -17,8 +17,10 @@ const MyReviews = () => {
             });
     }, [user]);
 
+    // DELETE
     //delete a review by id from MyReviewList.js
-    const handleReviewDelete = (id) => {
+    const handleReviewDelete = (id, serviceId) => {
+
         //call delete api
         fetch(`http://localhost:5000/reviews/delete/${id}`, {
             method: 'DELETE'
@@ -30,8 +32,24 @@ const MyReviews = () => {
                     const remainingReviews = reviews.filter(rev => rev._id !== id);
                     setReviews(remainingReviews);
 
-                    toast.success('Review Deleted');
+                    toast.success('Review Deleted', {
+                        position: "top-center"
+                    });
+
+                    // Api call : update(patch) service rating
+                    // get all the reviews rating for the service
+                    // calculate average rating for the service
+                    // update service rating with new rating
+                    fetch(`http://localhost:5000/service/update/rating/${serviceId}`, {
+                        method: "PATCH"
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+                        });
+
                 }
+
             });
 
     }

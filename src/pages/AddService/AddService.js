@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa";
 import toast from 'react-hot-toast';
 
 const AddService = () => {
-    const [rating, setRating] = useState(0);
+    // const [rating, setRating] = useState(0);
 
     const handleCreateService = event => {
         event.preventDefault();
@@ -16,7 +16,7 @@ const AddService = () => {
             title,
             img,
             description,
-            rating
+            rating: 0
         }
 
         //call post api for service
@@ -65,7 +65,7 @@ const AddService = () => {
                         </div>
 
                         {/* rating */}
-                        <div className="form-control">
+                        {/* <div className="form-control">
                             <div className="flex  items-center py-6">
                                 <span className="font-semibold text-center">Rating: </span>
                                 <div className="flex space-x-3 text-xl ml-5 md:text-3xl">
@@ -82,7 +82,7 @@ const AddService = () => {
                                     }
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className="form-control mt-6">
                             <button className="btn bg-amber-500 border-0 capitalize w-fit mx-auto">Create Service</button>

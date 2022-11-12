@@ -23,11 +23,11 @@ const ServiceReview = ({ review }) => {
                     </div>
                 </div>
             </div>
-            <p className='w-full md:w-8/12 lg:w-3/4 mt-3 md:mt-0 text-center'>
+            <div className='w-full md:w-8/12 lg:w-3/4 mt-3 md:mt-0 text-center'>
                 <p className={message.length < 100 ? 'md:text-right' : 'md:text-justify'}>
                     {message}
                 </p>
-            </p>
+            </div>
         </div>
     );
 };

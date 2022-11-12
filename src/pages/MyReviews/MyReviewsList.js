@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import RatingStar from '../../components/RatingStar/RatingStar';
-import { FaEdit, FaTimes } from "react-icons/fa";
+import { FaEdit, FaTimes, FaCheck } from "react-icons/fa";
+import toast from 'react-hot-toast';
 
 const MyReviewsList = ({ review, handleReviewDelete }) => {
     const { message, rating, userName, userImg, serviceId, _id } = review;
@@ -14,6 +15,33 @@ const MyReviewsList = ({ review, handleReviewDelete }) => {
                 setService(data);
             });
     }, [serviceId]);
+
+
+    const handleDelete = () => {
+        //better-looking confirmation dialogue
+        toast((t) => (
+            <span>
+                <div>Want To <span className='text-red-500'>DELETE</span> The Review</div>
+                <div className='flex justify-between mt-2'>
+                    <button
+                        onClick={() => handleReviewDelete(_id, serviceId)}
+                        className='flex justify-center items-center gap-2 text-xl text-green-500 border-2 rounded-lg px-2 border-transparent hover:border-green-500'
+                    >
+                        <FaCheck /> Yes
+                    </button>
+                    <button
+                        onClick={() => toast.dismiss(t.id)}
+                        className='flex justify-center items-center gap-2 text-xl text-red-500 border-2 rounded-lg px-2 border-transparent hover:border-red-500'
+                    >
+                        <FaTimes /> No
+                    </button>
+                </div>
+            </span>
+        ), {
+            position: "top-center"
+        });
+
+    }
 
 
     return (
@@ -34,8 +62,7 @@ const MyReviewsList = ({ review, handleReviewDelete }) => {
 
                         {/* Delete Button */}
                         <button
-                            onClick={() =>
-                                handleReviewDelete(_id)}
+                            onClick={handleDelete}
                             className='p-1 text-red-500 rounded hover:scale-150 hover:bg-red-500 hover:text-white'
                             title='Delete'
                         >
