@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import RatingStar from '../../components/RatingStar/RatingStar';
 import { FaEdit, FaTimes, FaCheck } from "react-icons/fa";
 import toast from 'react-hot-toast';
@@ -53,12 +54,14 @@ const MyReviewsList = ({ review, handleReviewDelete }) => {
                     {/* operations */}
                     <div className='flex justify-center items-center gap-5 text-xl'>
                         {/* Edit Button */}
-                        <button
-                            className='p-1 text-blue-500 rounded hover:scale-150 hover:bg-blue-500 hover:text-white'
-                            title='Edit'
-                        >
-                            <FaEdit />
-                        </button>
+                        <Link to={`/myreviews/update/${_id}`}>
+                            <button
+                                className='p-1 text-blue-500 rounded hover:scale-150 hover:bg-blue-500 hover:text-white'
+                                title='Edit'
+                            >
+                                <FaEdit />
+                            </button>
+                        </Link>
 
                         {/* Delete Button */}
                         <button

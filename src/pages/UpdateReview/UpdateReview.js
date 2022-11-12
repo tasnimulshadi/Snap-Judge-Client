@@ -1,62 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
-import { useState, useContext } from 'react';
-import { AuthContext } from '../../context/AuthProvider';
 import toast from 'react-hot-toast';
 
-
-const AddReview = () => {
-    const { user } = useContext(AuthContext);
-    const service = useLoaderData();
-    const [rating, setRating] = useState(0);
+const UpdateReview = () => {
+    const review = useLoaderData();
+    const [rating, setRating] = useState(review.rating);
     const navigate = useNavigate();
 
     // Add Review button
-    const handleAddReview = event => {
+    const handleUpdateReview = event => {
         event.preventDefault();
         const message = event.target.message.value;
         //time 
 
-        const reviewInfo = {
-            serviceId: service._id,
-            userId: user.uid,
-            userName: user.displayName,
-            userImg: user.photoURL,
+        const updateInfo = {
+            id: review._id,
             message,
-            rating,
+            rating
         }
         // console.log(review);
 
-        // Api call : add review 
-        fetch('http://localhost:5000/addreview', {
-            method: 'POST',
+        // Api call : update review 
+        fetch('http://localhost:5000/review/update', {
+            method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(reviewInfo)
+            body: JSON.stringify(updateInfo)
         })
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    toast.success('A review is added');
-                    event.target.reset();
+                    toast.success('Review Updated');
 
-                    //patch start
                     // Api call : update(patch) service rating
                     // get all the reviews rating for the service
                     // calculate average rating for the service
                     // update service rating with new rating
-                    fetch(`http://localhost:5000/service/update/rating/${service._id}`, {
+                    fetch(`http://localhost:5000/service/update/rating/${review.serviceId}`, {
                         method: "PATCH"
                     })
                         .then(res => res.json())
                         .then(data => {
                             if (data.acknowledged) {
-                                // after review is added into database 
+                                // after review is updated into database 
                                 // after service rating is updated 
                                 // then navigate to the service
-                                navigate(`/services/${service._id}`);
+                                navigate('/myreviews');
                             }
 
                         });
@@ -65,26 +56,17 @@ const AddReview = () => {
                 }
 
             });
-        //add review api end
+        //update review api end
 
     }
-
 
     return (
         <div className="flex flex-col max-w-xl p-8 shadow-sm rounded-xl lg:p-12 mx-auto border-2 my-16">
             <div className="flex flex-col items-center w-full">
-                <h2 className="font-semibold text-center mb-3">Give your Opinion about</h2>
-                <h2 className="text-3xl font-semibold text-center">{service.title}</h2>
+                <h2 className="font-semibold text-center mb-3">Update your Opinion</h2>
                 <div className="flex flex-col items-center py-6 space-y-3">
-                    <span className="font-semibold text-center">How was your experience?</span>
                     <div className="flex space-x-3 text-xl md:text-3xl">
-                        {/* 
-                            Coment: button to provide a rating, 
-                            * initially rating is 0, in useState, 
-                            * every button has a num from 1 to 5, 
-                            * when a button is clicked that number is set as a new rating in state, 
-                            * based on the rating number start color changes, the buttons whose values are less than equal to the rating 
-                        */}
+                        {/*like add a review page*/}
                         {
                             [...Array(5).keys()].map(btn =>
                                 <button
@@ -98,13 +80,13 @@ const AddReview = () => {
                         }
                     </div>
                 </div>
-                <form onSubmit={handleAddReview} className="flex flex-col w-full">
-                    <textarea rows="3" name='message' placeholder="Message..." className="border-2 p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900" required></textarea>
-                    <button type="submit" className="py-4 my-8 font-semibold rounded-md bg-blue-500 text-white">Add Review</button>
+                <form onSubmit={handleUpdateReview} className="flex flex-col w-full">
+                    <textarea rows="3" name='message' defaultValue={review.message} placeholder="Message..." className="border-2 p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900" required></textarea>
+                    <button type="submit" className="py-4 my-8 font-semibold rounded-md bg-blue-500 text-white">Update</button>
                 </form>
             </div>
         </div>
     );
 };
 
-export default AddReview;
+export default UpdateReview;
