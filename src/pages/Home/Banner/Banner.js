@@ -17,6 +17,7 @@ const Banner = () => {
                             <img src={img} className="w-full h-[80vh] lg:h-[600px] lg:rounded-xl object-cover" alt="" />
                         </div>
 
+                        {/* banner content */}
                         <div className="absolute flex justify-end items-center h-full px-5 md:left-20">
                             <div>
                                 <h1 className='text-4xl md:text-6xl leading-10 lg:leading-[70px] text-white font-bold'>
@@ -35,10 +36,14 @@ const Banner = () => {
                             </div>
                         </div>
 
+                        {/* banner image changing buttons (left right) */}
                         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 bottom-0">
+                            {/* left: decreasing index num until 0 index, when goes less then 0 change it to max index */}
                             <a href={`#${index > 0 ? index - 1 : bannerImages.length - 1}`} className="btn btn-circle  border-0" >
                                 <FaArrowLeft />
                             </a>
+
+                            {/* right: increasing index num until max, when it exceeds max index convert it to 0 index */}
                             <a href={`#${index > bannerImages.length - 2 ? 0 : index + 1}`} className="btn btn-circle  border-0">
                                 <FaArrowRight />
                             </a>

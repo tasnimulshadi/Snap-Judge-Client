@@ -5,16 +5,19 @@ import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
 import toast from 'react-hot-toast';
 
+
 const AddReview = () => {
     const { user } = useContext(AuthContext);
     const service = useLoaderData();
     const [rating, setRating] = useState(0);
     const navigate = useNavigate();
 
+    // Add Review button
     const handleAddReview = event => {
         event.preventDefault();
         const message = event.target.message.value;
-        //time
+        //time 
+
         const reviewInfo = {
             serviceId: service._id,
             userId: user.uid,
@@ -24,6 +27,7 @@ const AddReview = () => {
             rating,
         }
         // console.log(review);
+
         // add review api call
         fetch('http://localhost:5000/addreview', {
             method: 'POST',
@@ -35,22 +39,32 @@ const AddReview = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    toast.success('A review added');
+                    toast.success('A review is added');
                     event.target.reset();
+
+                    //after review is added into database then navigate to the service
                     navigate(`/services/${service._id}`);
                 }
             });
+
     }
+
 
     return (
         <div className="flex flex-col max-w-xl p-8 shadow-sm rounded-xl lg:p-12 mx-auto border-2 my-16">
-
             <div className="flex flex-col items-center w-full">
                 <h2 className="font-semibold text-center mb-3">Give Your opinion about</h2>
                 <h2 className="text-3xl font-semibold text-center">{service.title}</h2>
                 <div className="flex flex-col items-center py-6 space-y-3">
                     <span className="font-semibold text-center">How was your experience?</span>
                     <div className="flex space-x-3 text-xl md:text-3xl">
+                        {/* 
+                            Coment: button to provide a rating, 
+                            * initially rating is 0, in useState, 
+                            * every button has a num from 1 to 5, 
+                            * when a button is clicked that number is set as a new rating in state, 
+                            * based on the rating number start color changes, the buttons whose values are less than equal to the rating 
+                        */}
                         {
                             [...Array(5).keys()].map(btn =>
                                 <button

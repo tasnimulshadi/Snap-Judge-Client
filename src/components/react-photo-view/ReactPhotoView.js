@@ -1,6 +1,9 @@
 import React from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 
+// this component works as a img tag. 
+// when the image is clicked the image is shown in fuul screen with black background
+// img prop is an img url
 const ReactPhotoView = ({ img }) => {
     return (
         <PhotoProvider>

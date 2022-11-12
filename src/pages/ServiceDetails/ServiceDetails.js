@@ -1,22 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import RatingStar from '../../components/RatingStar/RatingStar';
 import ServiceReview from './ServiceReview';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
 import toast from 'react-hot-toast';
 
 
 const ServiceDetails = () => {
-    const { user } = useContext(AuthContext);
     const service = useLoaderData();
     const { title, description, img, rating, _id } = service;
+    const { user } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
     const navigate = useNavigate();
 
-    //get all reviews by service id
+    //api call : get all reviews by Service ID
     useEffect(() => {
         fetch(`http://localhost:5000/reviews/service/${_id}`)
             .then(res => res.json())
@@ -35,6 +32,7 @@ const ServiceDetails = () => {
         navigate(`/service/addreview/${_id}`);
     }
 
+
     return (
         <div>
             {/* details */}
@@ -44,7 +42,9 @@ const ServiceDetails = () => {
                         <h2 className="font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none text-center">
                             {title}
                         </h2>
-                        <h2 className='text-2xl'> <RatingStar rating={rating} /></h2>
+                        <h2 className='text-2xl'>
+                            <RatingStar rating={rating} />
+                        </h2>
                     </div>
                     <div className="flex flex-col lg:flex-row mt-10">
                         <div className="mb-6 lg:mb-0 lg:w-1/2 lg:pr-5">
@@ -59,17 +59,29 @@ const ServiceDetails = () => {
                 </div>
             </div>
 
+            {/* reviews */}
             <div className='flex justify-between items-center mx-10'>
                 <h3 className="text-center lg:my-5 text-2xl md:text-3xl lg:text-4xl  lg:leading-[60px] font-bold ">Client Reviews</h3>
-                <button onClick={handleAddReviewButton} className="btn btn-outline capitalize">Add A Review</button>
+                <button
+                    onClick={handleAddReviewButton}
+                    title={!user ? 'Please login to Post a Review' : 'Post a Review'}
+                    className="btn btn-outline capitalize"
+                >
+                    Add A Review
+                </button>
             </div>
-            {
-                reviews.map(rev => <ServiceReview
-                    key={rev._id}
-                    review={rev}
-                ></ServiceReview>)
+            <div>
+                {
+                    reviews.length === 0 && <p className='capitalize text-center text-xl'>no reviews found . . .</p>
+                }
+                {
+                    reviews.map(rev => <ServiceReview
+                        key={rev._id}
+                        review={rev}
+                    ></ServiceReview>)
 
-            }
+                }
+            </div>
         </div>
     );
 };

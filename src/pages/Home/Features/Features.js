@@ -6,7 +6,7 @@ const Features = () => {
         <section className="">
             <div className="container max-w-xl p-6 mx-auto space-y-12 lg:px-8 lg:max-w-7xl">
                 <div className="text-center">
-                    <h3 className="my-3 lg:my-5 text-3xl md:text-4xl lg:text-5xl  lg:leading-[60px] font-bold">Our Services</h3>
+                    <h3 className="my-3 lg:my-5 text-3xl md:text-4xl lg:text-5xl  lg:leading-[60px] font-bold">Photography Features</h3>
                     <p className="text-lg text-gray-500 capitalize">
                         Our in-house photography services team made up of professional photographers
                         <br />

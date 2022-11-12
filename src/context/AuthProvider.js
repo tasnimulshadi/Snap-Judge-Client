@@ -11,21 +11,25 @@ import {
 } from 'firebase/auth';
 import app from '../firebase/firebase.config';
 
+
 export const AuthContext = createContext();
+//firebase auth config
 const auth = getAuth(app);
+
 
 const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    //firebase
+    //firebase methods
     const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
     const updateUser = (name, img) => {
+        setLoading(true);
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: img
         });
@@ -57,7 +61,6 @@ const AuthProvider = ({ children }) => {
 
         return () => unsubscribe();
     }, []);
-
 
 
     const value = {

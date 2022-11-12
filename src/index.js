@@ -12,7 +12,11 @@ root.render(
   <React.StrictMode>
     <AuthProvider>
       <App />
-      <Toaster />
+
+      <Toaster
+        position="bottom-center"
+        reverseOrder={false}
+      />
     </AuthProvider>
   </React.StrictMode>
 );
