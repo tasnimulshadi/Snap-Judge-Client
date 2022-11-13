@@ -2,8 +2,10 @@ import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
 import MyReviewsList from './MyReviewsList';
 import toast from 'react-hot-toast';
+import useDocumentTitle from '../../utilities/useDocumentTitle';
 
 const MyReviews = () => {
+    useDocumentTitle("My Reviews");
     const { user } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
 

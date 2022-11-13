@@ -3,8 +3,10 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from '../../context/AuthProvider';
 import toast from 'react-hot-toast';
+import useDocumentTitle from '../../utilities/useDocumentTitle';
 
 const Register = () => {
+    useDocumentTitle("Register");
     const { createUser, googleSingIn, updateUser, signOutUser } = useContext(AuthContext);
 
     //navigate

@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { FaStar } from "react-icons/fa";
 import toast from 'react-hot-toast';
+import useDocumentTitle from '../../utilities/useDocumentTitle';
 
 const AddService = () => {
-    // const [rating, setRating] = useState(0);
+    useDocumentTitle("Add Service");
 
     const handleCreateService = event => {
         event.preventDefault();

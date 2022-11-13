@@ -4,9 +4,11 @@ import { FaStar } from "react-icons/fa";
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
 import toast from 'react-hot-toast';
+import useDocumentTitle from '../../utilities/useDocumentTitle';
 
 
 const AddReview = () => {
+    useDocumentTitle("Add Review");
     const { user } = useContext(AuthContext);
     const service = useLoaderData();
     const [rating, setRating] = useState(0);

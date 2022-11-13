@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
 import toast from 'react-hot-toast';
+import useDocumentTitle from '../../utilities/useDocumentTitle';
 
 const UpdateReview = () => {
+    useDocumentTitle("Update Review");
     const review = useLoaderData();
     const [rating, setRating] = useState(review.rating);
     const navigate = useNavigate();

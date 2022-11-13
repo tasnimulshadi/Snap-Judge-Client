@@ -4,22 +4,11 @@
 2.
 3. 
 
-1. The **title of the page** will change with the page you visit. It should not be the same for every route
+1. 
 2. 
 3. 
 4. 
 5. Implement the basic version of the **JWT**  **token** for email/password-based authentication. Upon login, you will create a jwt token and store it on the client side, and for the "My reviews" page, you will send the token and verify the user. Implementing 401 and 403 is optional. 
 6.
-7.  **Simple challenge** In the service details page, **sort the reviews in a descending order** by inserting time(you have to keep the inserting time when you add a review, you can do it with the Date object, or you can explore MongoDB documentation). You will have to implement this code on the server side.
-
-### Optional
-1. Use pagination on the services page.
-3. 
-4. 2. Try to use a better-looking confirmation dialogue other than the browser's default confirm.
-3. On the `add a service` page, try to implement direct image upload from your computer. This image can be hosted on a third party image hosting like imgbb or directly to mongodb
-4. Add some animation while applicable.
-5. Please Use icons whenever applicable and use fonts (google fonts)
-6. Make the footer a little more realistic with the copyright symbol and year.
-7. Optimize your images
-8. Add something extra of your own. This will help you in the future.
+7.  
 

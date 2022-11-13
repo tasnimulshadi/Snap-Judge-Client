@@ -4,9 +4,11 @@ import RatingStar from '../../components/RatingStar/RatingStar';
 import ServiceReview from './ServiceReview';
 import { AuthContext } from '../../context/AuthProvider';
 import toast from 'react-hot-toast';
+import useDocumentTitle from '../../utilities/useDocumentTitle';
 
 
 const ServiceDetails = () => {
+    useDocumentTitle("Service");
     const service = useLoaderData();
     const { title, description, img, rating, _id } = service;
     const { user } = useContext(AuthContext);
@@ -69,6 +71,7 @@ const ServiceDetails = () => {
                 >
                     Add A Review
                 </button>
+
             </div>
             <div>
                 {

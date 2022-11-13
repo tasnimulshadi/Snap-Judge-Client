@@ -1,10 +1,12 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import useDocumentTitle from '../../utilities/useDocumentTitle';
 import BlogArticle from './BlogArticle';
 
 
 const Blog = () => {
+    useDocumentTitle("Blog");
     const [blogs, setBlogs] = useState([]);
 
     //call blog get api
