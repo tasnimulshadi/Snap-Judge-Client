@@ -77,7 +77,7 @@ const MyReviewsList = ({ review, handleReviewDelete }) => {
                     <div className='flex items-center gap-5'>
                         <div className="avatar">
                             <div className="mask mask-squircle w-12 h-12">
-                                <img src={userImg} alt="Avatar Tailwind CSS Component" />
+                                <img src={userImg ? userImg : "https://mspgh.unimelb.edu.au/__data/assets/image/0011/3576098/Placeholder.jpg"} alt="" />
                             </div>
                         </div>
                         <div>

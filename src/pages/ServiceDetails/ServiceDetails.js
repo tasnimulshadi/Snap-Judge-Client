@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate, Link } from 'react-router-dom';
 import RatingStar from '../../components/RatingStar/RatingStar';
 import ServiceReview from './ServiceReview';
 import { AuthContext } from '../../context/AuthProvider';
 import toast from 'react-hot-toast';
 import useDocumentTitle from '../../utilities/useDocumentTitle';
+import Pagination from '../../components/Pagination/Pagination';
 
 
 const ServiceDetails = () => {
@@ -14,17 +15,22 @@ const ServiceDetails = () => {
     const { user } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
     const navigate = useNavigate();
+    //pagination
+    const [count, setCount] = useState(0);
+    const [index, setIndex] = useState(0);
+    const limit = 10;
+
 
     //api call : get all reviews by Service ID
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews/service/${_id}`)
+        fetch(`http://localhost:5000/reviewsbyservice?id=${_id}&limit=${limit}&index=${index}`)
             .then(res => res.json())
             .then(data => {
-                // console.log(data);
-                setReviews(data);
+                setReviews(data.reviews);
+                setCount(data.count);
             })
             .catch(err => console.error(err));
-    }, [_id]);
+    }, [_id, index]);
 
     // Add A Review button
     const handleAddReviewButton = () => {
@@ -63,7 +69,21 @@ const ServiceDetails = () => {
 
             {/* reviews */}
             <div className='flex justify-between items-center mx-10'>
-                <h3 className="text-center lg:my-5 text-2xl md:text-3xl lg:text-4xl  lg:leading-[60px] font-bold ">Client Reviews</h3>
+                <h3 className="text-center lg:my-5 text-2xl md:text-3xl lg:text-4xl  lg:leading-[60px] font-bold ">
+                    Client Reviews: {count}
+                </h3>
+                {
+                    !user &&
+                    <p className='text-red-400'>
+                        Please login to Post a Review
+                        <Link
+                            to={`/service/addreview/${_id}`}
+                            className='text-blue-500 hover:underline font-bold ml-3'
+                        >
+                            Login
+                        </Link>
+                    </p>
+                }
                 <button
                     onClick={handleAddReviewButton}
                     title={!user ? 'Please login to Post a Review' : 'Post a Review'}
@@ -84,6 +104,16 @@ const ServiceDetails = () => {
                     ></ServiceReview>)
 
                 }
+            </div>
+
+            {/* pagination */}
+            <div className='mt-12'>
+                <Pagination
+                    count={count}
+                    index={index}
+                    setIndex={setIndex}
+                    limit={limit}
+                ></Pagination>
             </div>
         </div>
     );

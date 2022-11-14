@@ -76,6 +76,7 @@ const Register = () => {
         googleSingIn()
             .then((result) => {
                 toast.success('User Logged In Successfully');
+
                 //navigate
                 navigate(previousLocation, { replace: true });
 

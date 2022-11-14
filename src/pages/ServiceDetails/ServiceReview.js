@@ -4,13 +4,15 @@ import RatingStar from '../../components/RatingStar/RatingStar';
 const ServiceReview = ({ review }) => {
     const { message, rating, userName, userImg } = review;
 
+
+
     return (
         <div className='flex flex-wrap justify-between px-4 py-4 sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:px-8 shadow-lg rounded-md mx-7 mb-5'>
             <div className='w-full md:w-2/6 lg:w-1/4'>
                 <div className="w-full flex justify-start items-center space-x-3">
                     <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
-                            <img src={userImg} alt="" />
+                            <img src={userImg ? userImg : "https://mspgh.unimelb.edu.au/__data/assets/image/0011/3576098/Placeholder.jpg"} alt="" />
                         </div>
                     </div>
                     <div className='w-full flex items-center justify-between md:block'>

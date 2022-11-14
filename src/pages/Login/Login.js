@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import useDocumentTitle from '../../utilities/useDocumentTitle';
 
 
+
 const Login = () => {
     useDocumentTitle("Login");
     const { signInUser, googleSingIn } = useContext(AuthContext);
@@ -26,6 +27,7 @@ const Login = () => {
             .then(result => {
                 form.reset();
                 toast.success('User Logged In Successfully');
+
                 //navigate
                 navigate(previousLocation, { replace: true });
 
@@ -41,6 +43,7 @@ const Login = () => {
         googleSingIn()
             .then((result) => {
                 toast.success('User Logged In Successfully');
+
                 //navigate
                 navigate(previousLocation, { replace: true });
 
