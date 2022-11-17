@@ -10,7 +10,7 @@ const MyReviewsList = ({ review, handleReviewDelete }) => {
 
     //call api : get all reviews by Service ID
     useEffect(() => {
-        fetch(`http://localhost:5000/services/${serviceId}`)
+        fetch(`https://ph-assignment-11-service-review-server-tasnimulshadi.vercel.app/services/${serviceId}`)
             .then(res => res.json())
             .then(data => {
                 setService(data);
@@ -25,7 +25,10 @@ const MyReviewsList = ({ review, handleReviewDelete }) => {
                 <div>Want To <span className='text-red-500'>DELETE</span> The Review</div>
                 <div className='flex justify-between mt-2'>
                     <button
-                        onClick={() => handleReviewDelete(_id, serviceId)}
+                        onClick={() => {
+                            handleReviewDelete(_id, serviceId);
+                            toast.dismiss(t.id);
+                        }}
                         className='flex justify-center items-center gap-2 text-xl text-green-500 border-2 rounded-lg px-2 border-transparent hover:border-green-500'
                     >
                         <FaCheck /> Yes

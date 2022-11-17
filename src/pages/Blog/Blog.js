@@ -11,7 +11,7 @@ const Blog = () => {
 
     //call blog get api
     useEffect(() => {
-        fetch('http://localhost:5000/blogs')
+        fetch('https://ph-assignment-11-service-review-server-tasnimulshadi.vercel.app/blogs')
             .then(res => res.json())
             .then(data => {
                 setBlogs(data);

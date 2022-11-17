@@ -23,7 +23,7 @@ const ServiceDetails = () => {
 
     //api call : get all reviews by Service ID
     useEffect(() => {
-        fetch(`http://localhost:5000/reviewsbyservice?id=${_id}&limit=${limit}&index=${index}`)
+        fetch(`https://ph-assignment-11-service-review-server-tasnimulshadi.vercel.app/reviewsbyservice?id=${_id}&limit=${limit}&index=${index}`)
             .then(res => res.json())
             .then(data => {
                 setReviews(data.reviews);

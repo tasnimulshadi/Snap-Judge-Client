@@ -7,7 +7,7 @@ const ServicesSection = () => {
 
     // call services api with limit 3
     useEffect(() => {
-        fetch('http://localhost:5000/services?limit=3')
+        fetch('https://ph-assignment-11-service-review-server-tasnimulshadi.vercel.app/services?limit=3')
             .then(res => res.json())
             .then(data => setServices(data.services))
     }, []);

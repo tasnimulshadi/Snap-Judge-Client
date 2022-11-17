@@ -19,7 +19,7 @@ const AddService = () => {
         }
 
         //call post api for service
-        fetch('http://localhost:5000/service', {
+        fetch('https://ph-assignment-11-service-review-server-tasnimulshadi.vercel.app/service', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -46,14 +46,14 @@ const routes = createBrowserRouter([
             {
                 path: '/services/:id',
                 element: <ServiceDetails />,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://ph-assignment-11-service-review-server-tasnimulshadi.vercel.app/services/${params.id}`)
             },
             {
                 path: '/service/addreview/:id',
                 element: <PrivateRoute>
                     <AddReview />
                 </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://ph-assignment-11-service-review-server-tasnimulshadi.vercel.app/services/${params.id}`)
             },
             {
                 path: '/service/add',
@@ -72,7 +72,7 @@ const routes = createBrowserRouter([
                 element: <PrivateRoute>
                     <UpdateReview />
                 </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/review/${params.id}`)
+                loader: ({ params }) => fetch(`https://ph-assignment-11-service-review-server-tasnimulshadi.vercel.app/review/${params.id}`)
             }
         ]
     },

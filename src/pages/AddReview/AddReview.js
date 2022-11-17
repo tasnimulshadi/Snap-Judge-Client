@@ -31,7 +31,7 @@ const AddReview = () => {
         // console.log(review);
 
         // Api call : add review 
-        fetch('http://localhost:5000/addreview', {
+        fetch('https://ph-assignment-11-service-review-server-tasnimulshadi.vercel.app/addreview', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -49,7 +49,7 @@ const AddReview = () => {
                     // get all the reviews rating for the service
                     // calculate average rating for the service
                     // update service rating with new rating
-                    fetch(`http://localhost:5000/service/update/rating/${service._id}`, {
+                    fetch(`https://ph-assignment-11-service-review-server-tasnimulshadi.vercel.app/service/update/rating/${service._id}`, {
                         method: "PATCH"
                     })
                         .then(res => res.json())
